@@ -169,7 +169,9 @@ namespace bmstu {
             }
         }
 
-        list(list &&other) {
+        list(list &&other) : size_(0), tail_(new node()), head_(new node()) {
+            head_->next_node = tail_;
+            tail_->prev_node = head_;
             swap(other);
             other.clear();
         }
@@ -211,6 +213,7 @@ namespace bmstu {
                     head_->next_node = next->next_node;
                     delete next;
                 }
+                tail_->prev_node = head_;
                 size_ = 0;
             }
         }
