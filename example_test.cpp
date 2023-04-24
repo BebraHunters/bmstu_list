@@ -200,6 +200,29 @@ TEST(Method, swap) {
     }
 }
 
+TEST(Operapor, Index) {
+    bmstu::list<int> my_list({0, 1, 2, 0, 4});
+    my_list[3] = 3;
+
+    ASSERT_EQ(my_list.size(), 5);
+
+    bmstu::list<int>::iterator it_b = my_list.begin();
+    bmstu::list<int>::iterator it_e = my_list.end();
+    for (int a = 0; it_b != it_e; ++it_b, ++a) {
+        ASSERT_TRUE(*it_b == a);
+        ASSERT_TRUE(my_list[a] == a);
+    }
+
+    --it_e;
+    it_b = my_list.begin() - 1;
+    for (int a = 4; it_b != it_e; --it_e, --a) {
+        ASSERT_TRUE(*it_e == a);
+        ASSERT_TRUE(my_list[a] == a);
+    }
+
+
+}
+
 TEST(Operator, EQs) {
     bmstu::list<int> my_list_1({0, 1, 2, 3, 4, 5, 6});
     bmstu::list<int> my_list_2({0, 1, 2, 3, 4, 5, 6});
