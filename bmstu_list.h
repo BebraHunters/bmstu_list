@@ -46,7 +46,7 @@ namespace bmstu {
             list_iterator &operator++() {
                 assert(node_ != nullptr);
                 if (node_->next_node == nullptr) {
-                    throw std::logic_error("You can't copy tail!");
+                    throw std::logic_error("You can't access the element after tail!");
                 }
                 node_ = node_->next_node;
                 return *this;
@@ -55,7 +55,7 @@ namespace bmstu {
             list_iterator &operator--() {
                 assert(node_ != nullptr);
                 if (node_->prev_node == nullptr) {
-                    throw std::logic_error("You can't copy head!");
+                    throw std::logic_error("You can't access the element before head!");
                 }
                 node_ = node_->prev_node;
                 return *this;
@@ -324,6 +324,8 @@ namespace bmstu {
             return iterator{new_node};
         }
 
+        /// ДАЛЕЕ МЕТОДЫ, КОТОРЫЕ МЫ НЕ ПИСАЛИ (Ожидаем официальный листинг - может там будет)
+
         /// revers, меняющий только значения (value_), лежащие внутри узлов
         void revers_v() {
             if (empty()) {
@@ -405,6 +407,7 @@ namespace bmstu {
             prev->next_node = it_b.node_;
         }
 
+        /// Оператор копирующего присваивания
         list<T> &operator=(const list<T> &other) {
             if (this != &other) {
                 list<T> tmp;
@@ -416,6 +419,7 @@ namespace bmstu {
             return *this;
         }
 
+        /// Оператор "дописи" другого списка к текущему
         list<T> &operator+=(const list<T> &other) {
             for (const auto &item: other) {
                 this->push_back(item);
@@ -424,6 +428,7 @@ namespace bmstu {
             return *this;
         }
 
+        /// Оператор конкатенации списков
         friend list<T> operator+(const list<T> &left, const list<T> &right) {
             list<T> result(left);
             result += right;

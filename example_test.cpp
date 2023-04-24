@@ -1,7 +1,5 @@
 #include <gtest/gtest.h>
 #include <iostream>
-#include <string>
-#include <vector>
 #include "bmstu_list.h"
 
 TEST(Constructor, Default) {
@@ -249,4 +247,3 @@ TEST(Method, insert) {
         ASSERT_TRUE(my_list[a] == a);
     }
 }
-
