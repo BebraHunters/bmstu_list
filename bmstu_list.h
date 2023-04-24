@@ -169,11 +169,8 @@ namespace bmstu {
             }
         }
 
-        list(list &&other) : size_(0), tail_(new node()), head_(new node()) {
-            head_->next_node = tail_;
-            tail_->prev_node = head_;
+        list(list &&other) {
             swap(other);
-            other.clear();
         }
 
         template<typename Type>
@@ -258,10 +255,6 @@ namespace bmstu {
 
         T &operator[](size_t pos) {
             return *(begin() + pos);
-        }
-
-        size_t size() const {
-            return size_;
         }
 
         size_t size() {
@@ -427,6 +420,7 @@ namespace bmstu {
             for (const auto &item: other) {
                 this->push_back(item);
             }
+            size_ += other.size_;
             return *this;
         }
 
